@@ -18,7 +18,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" @click="closeModal">Ок</button>
-          <button type="button" class="btn btn-outline" @click="closeModal">Закрыть</button>
+          <button type="button" class="btn btn-outline" @click="closeModal('close')">Закрыть</button>
         </div>
       </div>
     </div>
@@ -49,10 +49,12 @@ export default {
     }
   },
   methods: {
-    closeModal() {
+    closeModal(val) {
+      let selectId = localStorage.getItem('selectId')
+      if(val === 'close') selectId = null
       this.$emit('select', {
         isShowModal: false,
-        selectId: this.selectId
+        selectId
       })
     }
   }
